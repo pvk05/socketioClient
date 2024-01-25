@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h1>Chat</h1>
-    <h2>Username: <span id="username"></span></h2>
-    <input type="text" name="usernameInp" id="usernameInp">
-    <button id="setUsername">Set Username</button>
-    <div id="status"></div>
-    <div id="messages">
-        <ul id="messages-list">
 
-        </ul>
+    <div id="status"></div>
+
+    <h2>Username: <span id="username"></span></h2>
+    <div id="usernameDiv">
+        <input type="text" name="usernameInp" id="usernameInp">
+        <button id="setUsername">Set Username</button>
     </div>
-    <div>
-        <input type="text" id="messageInp">
-        <button id="send">Send</button>
+
+    <div id="chatDiv" style="display: none;">
+        <div id="messages">
+            <ul id="messages-list">
+
+            </ul>
+        </div>
+        <div>
+            <input type="text" id="messageInp">
+            <button id="send">Send</button>
+        </div>
     </div>
-    
-    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+
+
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"
+        integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh"
+        crossorigin="anonymous"></script>
     <script type="module" src="./socket.js"></script>
 
 </body>
+
 </html>

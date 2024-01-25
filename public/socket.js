@@ -1,34 +1,49 @@
-console.log("socket.js loaded");
+// Define the socket status
 var socketStatus = false
 document.getElementById("status").innerHTML = socketStatus;
+
+// Define the connection URL
 const connectionURL = "https://socketioserver-dev-mbea.1.ie-1.fl0.io";
 console.log(connectionURL);
 
-const socket = io(connectionURL); // Replace with your server URL
+// Connect to the Socket.IO server
+const socket = io(connectionURL, { autoConnect: false }); // Replace with your server URL
 
+// DEV STUFF
+socket.onAny((event, ...args) => {
+    console.log(event, args);
+});
+// END DEV STUFF
+
+// Handle socket connect event
 socket.on('connect', () => {
     console.log('Connected to Socket.IO server');
     // Perform any actions after successful connection
-    socketStatus = true;
+    socketStatus = "Connected";
     document.getElementById("status").innerHTML = socketStatus;
 });
 
+// Handle socket disconnect event
 socket.on('disconnect', () => {
     console.log('Disconnected from Socket.IO server');
     // Perform any actions after disconnection
-    socketStatus = false;
+    socketStatus = "Disconnected";
     document.getElementById("status").innerHTML = socketStatus;
 });
 
-var username = "user" + Math.floor(Math.random() * 1000);
-document.getElementById("username").innerHTML = username;
+var username;
 
+// Set username
 document.getElementById("setUsername").addEventListener("click", () => {
     username = document.getElementById("usernameInp").value;
     document.getElementById("username").innerHTML = username;
     document.getElementById("usernameInp").value = "";
+    socket.connect();
+    document.getElementById("usernameDiv").style.display = "none";
+    document.getElementById("chatDiv").style.display = "block";
 });
 
+// Define a class to represent a message
 class Message {
     constructor(user, text) {
         this.user = user;
@@ -44,11 +59,9 @@ socket.on('message', (data) => {
     document.getElementById("messages").innerHTML += `<li><strong>${data.user}</strong>: ${data.text}</li>`;
 });
 
-// Emit events to the server
-//socket.emit('eventName', { key: 'value' });
-
+// Send a message to the server
 document.getElementById("send").addEventListener("click", () => {
-    let msgTxt = document.getElementById("messageInp").value;
+    let msgTxt = document.getElementById("messageInp").value; 
     let message = new Message(username, msgTxt);
     socket.emit("message", message);
     document.getElementById("messageInp").value = "";
