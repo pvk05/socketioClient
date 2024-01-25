@@ -33,4 +33,5 @@ socket.on('message', (data) => {
 document.getElementById("send").addEventListener("click", () => {
     let msg = document.getElementById("messageInp").value;
     socket.emit("message", msg);
+    document.getElementById("messageInp").value = "";
 });
