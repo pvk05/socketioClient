@@ -1,3 +1,4 @@
+import process from 'process';
 console.log("socket.js loaded");
 var socketStatus = false
 document.getElementById("status").innerHTML = socketStatus;
