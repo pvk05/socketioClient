@@ -9,7 +9,7 @@ app.use(express.static(publicPath));
 
 // Define a route for the homepage
 app.get('/', (req, res) => {
-    res.sendFile(path.join(publicPath, 'index.html'));
+    res.status(200).sendFile(path.join(publicPath, 'index.html'));
 });
 
 // Start the server
