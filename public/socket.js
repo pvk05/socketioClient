@@ -1,8 +1,7 @@
-import process from 'process';
 console.log("socket.js loaded");
 var socketStatus = false
 document.getElementById("status").innerHTML = socketStatus;
-const connectionURL = process.env.CONNECTION_URL || "localhost:3000";
+const connectionURL = "https://socketioserver-dev-mbea.1.ie-1.fl0.io";
 console.log(connectionURL);
 
 const socket = io(connectionURL); // Replace with your server URL
