@@ -3,7 +3,7 @@ var socketStatus = false
 document.getElementById("status").innerHTML = socketStatus;
 
 // Define the connection URL
-const connectionURL = "https://socketioserver-dev-mbea.1.ie-1.fl0.io";
+const connectionURL = "localhost:3000";
 console.log(connectionURL);
 
 // Connect to the Socket.IO server
